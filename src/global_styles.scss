@@ -1,2 +1,4 @@
 /* Add application styles & imports to this file! */
 @use '@angular/material' as mat;
+
+@include mat.core();
