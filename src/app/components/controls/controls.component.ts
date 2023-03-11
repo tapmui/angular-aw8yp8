@@ -1,7 +1,10 @@
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Component, OnInit } from '@angular/core';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { AppService } from '../../services/app.service';
 import { GeoService } from '../../services/geo.service';
+import { MaterialModule } from '../../material.module';
 
 @Component({
   selector: 'app-controls',
