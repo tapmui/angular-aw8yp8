@@ -1,9 +1,10 @@
 import 'zone.js/dist/zone';
-import { Component } from '@angular/core';
+import { Component, importProvidersFrom } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppModule } from './app/app.module';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AppComponent } from './app/app.component';
 
 // @Component({
 //   selector: 'my-app',
@@ -21,6 +22,10 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 // }
 
 //bootstrapApplication(AppModule);
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch((err) => console.error(err));
+// platformBrowserDynamic()
+//   .bootstrapModule(AppModule)
+//   .catch((err) => console.error(err));
+
+bootstrapApplication(AppComponent, {
+  providers: [importProvidersFrom(AppModule)],
+});

@@ -7,6 +7,7 @@ import { AppService } from './services/app.service';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
