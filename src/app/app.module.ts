@@ -4,15 +4,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { ControlsComponent } from './components/controls/controls.component';
 import { MAT_BOTTOM_SHEET_DEFAULT_OPTIONS } from '@angular/material/bottom-sheet';
+import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [ControlsComponent],
-  imports: [BrowserModule, BrowserAnimationsModule, MaterialModule],
+  declarations: [AppComponent, ControlsComponent],
+  imports: [BrowserModule, MaterialModule, BrowserAnimationsModule],
   providers: [
     {
       provide: MAT_BOTTOM_SHEET_DEFAULT_OPTIONS,
       useValue: { hasBackdrop: false },
     },
   ],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

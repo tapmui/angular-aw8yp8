@@ -25,6 +25,7 @@
             "main": "src/main.ts",
             "assets": [],
             "styles": ["src/global_styles.scss"],
+            "polyfills": "src/polyfills.ts",
             "scripts": []
           },
           "configurations": {
