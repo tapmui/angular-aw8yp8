@@ -18,7 +18,9 @@ import { Collection, Feature } from 'ol';
 import { Geometry } from 'ol/geom';
 import { Vector } from '../models/vector';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class GeoService {
   tileSources = [
     { name: 'None', source: null },
@@ -46,11 +48,12 @@ export class GeoService {
       view: new View({
         constrainResolution: true,
       }),
-      controls: defaultControls().extend([
-        new Attribution(),
-        new ZoomToExtent({ extent: this.extent }),
-        new FullScreen(),
-      ]),
+      controls: defaultControls(),
+      // controls: defaultControls().extend([
+      //   // new Attribution(),
+      //   new ZoomToExtent({ extent: this.extent }),
+      //   new FullScreen(),
+      // ]),
     });
 
     const dragAndDropInteraction = new DragAndDrop({

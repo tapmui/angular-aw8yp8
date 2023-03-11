@@ -11,8 +11,6 @@ import { AppService } from './services/app.service';
   declarations: [ControlsComponent],
   imports: [MaterialModule],
   providers: [
-    AppService,
-    GeoService,
     {
       provide: MAT_BOTTOM_SHEET_DEFAULT_OPTIONS,
       useValue: { hasBackdrop: false },
