@@ -21,6 +21,8 @@ import { Injectable } from '@angular/core';
 import { Collection, Feature } from 'ol';
 import { Geometry } from 'ol/geom';
 import { Vector } from '../models/vector';
+import OSM from 'ol/source/OSM';
+import TileSource from 'ol/source/Tile';
 
 @Injectable({
   providedIn: 'root',
@@ -38,7 +40,7 @@ export class MapService {
   overviewMapControl = new OverviewMap({
     layers: [
       new TileLayer({
-        source: this.selectedTileSource.source,
+        source: this.selectedTileSource.source as TileSource,
       }),
     ],
   });
