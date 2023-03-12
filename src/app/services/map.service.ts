@@ -11,7 +11,7 @@ import VectorSource from 'ol/source/Vector';
 import DragAndDrop from 'ol/interaction/DragAndDrop';
 import GeoJSON from 'ol/format/GeoJSON';
 import { fromLonLat } from 'ol/proj';
-import { OverviewMap, defaults as defaultControls } from 'ol/control';
+import { OverviewMap, defaults as defaultControls, ScaleLine } from 'ol/control';
 import { defaults as defaultInteractions, PinchZoom } from 'ol/interaction';
 import { Injectable } from '@angular/core';
 import { Collection, Feature } from 'ol';
@@ -81,6 +81,21 @@ export class MapService {
 
   createMap(elementId: string): void {
     this.map.setTarget(elementId);
+    this.addMapControls()
+    this.map.updateSize();
+  }
+
+  addMapControls() {
+    this.map.addControl(
+      new ScaleLine({
+        bar: true,
+        minWidth: 140,
+        steps: 4,
+        units: 'metric',
+        text: true,
+      })
+    );
+
   }
 
   /**

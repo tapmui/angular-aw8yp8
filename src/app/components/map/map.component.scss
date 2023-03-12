@@ -4,26 +4,9 @@
   width: 100%;
 }
 
-.map {
-  //position: relative;
-  height: 100vh;
+.wrap {
+  position: relative;
+  height: 100%;
   width: 100%;
-  min-width: 200px !important;
   min-height: 200px !important;
 }
-
-// .selected-features {
-//   position: absolute;
-//   right: 0;
-//   padding: 0.5em;
-//   max-width: 360px;
-//   width: 100%;
-//   z-index: 10;
-// }
-
-// .container {
-//   & .selected-features,
-//   & .mat-card {
-//     margin: 0.25em;
-//   }
-// }

@@ -25,7 +25,7 @@
             "main": "src/main.ts",
             "assets": [],
             "inlineStyleLanguage": "scss",
-            "styles": ["src/global_styles.scss"],
+            "styles": ["node_modules/ol/ol.css", "src/global_styles.scss"],
             "polyfills": "src/polyfills.ts",
             "scripts": []
           },
