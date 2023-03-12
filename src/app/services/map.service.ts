@@ -50,7 +50,7 @@ export class MapService {
   zoom = 13;
   maxZoom = 22;
   minZoom = 13;
-  // Tampere 61.49911 23.78712
+  // Tampere 61.49911 23.78712Pa
   position = fromLonLat([23.78712, 61.49911]);
 
   private readonly map: Map;
@@ -116,6 +116,9 @@ export class MapService {
         units: 'metric',
         text: true,
       })
+    );
+    this.map.addControl(
+      new ZoomToExtent({ extent: this.extent })
     );
   }
 
