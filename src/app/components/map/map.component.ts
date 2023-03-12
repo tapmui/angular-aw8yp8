@@ -25,13 +25,10 @@ export class MapComponent implements AfterViewInit, OnDestroy {
   ngOnInit() {}
 
   ngAfterViewInit(): void {
-    console.log('ngAfterViewInit');
     // this follows map size changes and updates view when needed.
     this.observer.observe(this.mapContainer.nativeElement);
-    //this.mapService.updateView();
     this.mapService.setTileSource();
     this.mapService.createMap(this.mapContainer.nativeElement.id);
-    //this.mapService.updateSize(this.mapContainer.nativeElement.id);
   }
 
   ngOnDestroy(): void {
