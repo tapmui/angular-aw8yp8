@@ -5,9 +5,10 @@ import { MaterialModule } from './material.module';
 import { ControlsComponent } from './components/controls/controls.component';
 import { MAT_BOTTOM_SHEET_DEFAULT_OPTIONS } from '@angular/material/bottom-sheet';
 import { AppComponent } from './app.component';
+import { MapComponent } from './components/map/map.component';
 
 @NgModule({
-  declarations: [AppComponent, ControlsComponent],
+  declarations: [AppComponent, MapComponent, ControlsComponent],
   imports: [BrowserModule, MaterialModule, BrowserAnimationsModule],
   providers: [
     {

@@ -11,7 +11,7 @@ import VectorSource from 'ol/source/Vector';
 import DragAndDrop from 'ol/interaction/DragAndDrop';
 import GeoJSON from 'ol/format/GeoJSON';
 import { fromLonLat } from 'ol/proj';
-import { defaults as defaultControls } from 'ol/control';
+import { OverviewMap, defaults as defaultControls } from 'ol/control';
 import { defaults as defaultInteractions, PinchZoom } from 'ol/interaction';
 import { Injectable } from '@angular/core';
 import { Collection, Feature } from 'ol';
@@ -21,7 +21,7 @@ import { Vector } from '../models/vector';
 @Injectable({
   providedIn: 'root',
 })
-export class GeoService {
+export class MapService {
   tileSources = [
     { name: 'None', source: null },
     { name: 'OSM', source: new OsmSource() },
@@ -31,24 +31,28 @@ export class GeoService {
   selectedTileSource = this.tileSources[1];
   vectorSources: Vector[] = [];
 
+  overviewMapControl = new OverviewMap({
+    layers: [
+      new TileLayer({
+        source: this.selectedTileSource.source,
+      }),
+    ],
+  });
+
   private readonly map: Map;
-  private readonly tileLayer: TileLayer<OsmSource>;
-  private readonly vectorLayer: VectorLayer<any>;
+  private readonly tileLayer: TileLayer<OsmSource> = new TileLayer();
+  private readonly vectorLayer: VectorLayer<any> = new VectorLayer<any>();
   private readonly extent = [
     813079.7791264898, 5929220.284081122, 848966.9639063801, 5936863.986909639,
   ];
-
   constructor() {
-    this.tileLayer = new TileLayer();
-    this.vectorLayer = new VectorLayer<any>();
-
     this.map = new Map({
       interactions: defaultInteractions().extend([new PinchZoom()]),
       layers: [this.tileLayer, this.vectorLayer],
       view: new View({
         constrainResolution: true,
       }),
-      controls: defaultControls(),
+      controls: defaultControls().extend([this.overviewMapControl]),
       // controls: defaultControls().extend([
       //   // new Attribution(),
       //   new ZoomToExtent({ extent: this.extent }),
@@ -73,6 +77,10 @@ export class GeoService {
     });
 
     this.map.addInteraction(dragAndDropInteraction);
+  }
+
+  createMap(elementId: string): void {
+    this.map.setTarget(elementId);
   }
 
   /**

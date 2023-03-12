@@ -24,6 +24,7 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "assets": [],
+            "inlineStyleLanguage": "scss",
             "styles": ["src/global_styles.scss"],
             "polyfills": "src/polyfills.ts",
             "scripts": []

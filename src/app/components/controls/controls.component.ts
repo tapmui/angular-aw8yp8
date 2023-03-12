@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Component, OnInit } from '@angular/core';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { AppService } from '../../services/app.service';
-import { GeoService } from '../../services/geo.service';
+import { MapService } from '../../services/map.service';
 import { MaterialModule } from '../../material.module';
 
 @Component({
@@ -14,7 +14,7 @@ import { MaterialModule } from '../../material.module';
 export class ControlsComponent implements OnInit {
   constructor(
     private appService: AppService,
-    public geoService: GeoService,
+    public geoService: MapService,
     private bottomSheetRef: MatBottomSheetRef<ControlsComponent>
   ) {}
 

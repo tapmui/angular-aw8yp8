@@ -1,5 +1,5 @@
 import { AfterViewInit, Component } from '@angular/core';
-import { GeoService } from './services/geo.service';
+import { MapService } from './services/map.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ControlsComponent } from './components/controls/controls.component';
 import { Subscription } from 'rxjs';
@@ -17,7 +17,6 @@ export class AppComponent implements AfterViewInit {
 
   constructor(
     private appService: AppService,
-    private geoService: GeoService,
     private bottomSheet: MatBottomSheet
   ) {
     this.controlsStateSubscription = this.appService.controlsState.subscribe(
@@ -26,9 +25,6 @@ export class AppComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.geoService.updateView();
-    this.geoService.setTileSource();
-    this.geoService.updateSize();
   }
 
   openControls(): void {
