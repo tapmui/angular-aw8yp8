@@ -11,7 +11,11 @@ import VectorSource from 'ol/source/Vector';
 import DragAndDrop from 'ol/interaction/DragAndDrop';
 import GeoJSON from 'ol/format/GeoJSON';
 import { fromLonLat } from 'ol/proj';
-import { OverviewMap, defaults as defaultControls, ScaleLine } from 'ol/control';
+import {
+  OverviewMap,
+  defaults as defaultControls,
+  ScaleLine,
+} from 'ol/control';
 import { defaults as defaultInteractions, PinchZoom } from 'ol/interaction';
 import { Injectable } from '@angular/core';
 import { Collection, Feature } from 'ol';
@@ -39,6 +43,16 @@ export class MapService {
     ],
   });
 
+  attribution = new Attribution({
+    collapsible: false,
+  });
+
+  zoom = 13;
+  maxZoom = 22;
+  minZoom = 13;
+  // Tampere 61.49911 23.78712
+  position = fromLonLat([23.78712, 61.49911]);
+
   private readonly map: Map;
   private readonly tileLayer: TileLayer<OsmSource> = new TileLayer();
   private readonly vectorLayer: VectorLayer<any> = new VectorLayer<any>();
@@ -47,12 +61,20 @@ export class MapService {
   ];
   constructor() {
     this.map = new Map({
-      interactions: defaultInteractions().extend([new PinchZoom()]),
+      // interactions: defaultInteractions().extend([new PinchZoom()]),
       layers: [this.tileLayer, this.vectorLayer],
       view: new View({
         constrainResolution: true,
+        center: this.position,
+        zoom: this.zoom,
+        //minZoom: this.minZoom,
+        maxZoom: this.maxZoom,
       }),
-      controls: defaultControls().extend([this.overviewMapControl]),
+      controls: defaultControls({
+        attribution: false,
+        zoom: false,
+      }).extend([this.attribution]),
+      //controls: defaultControls().extend([this.overviewMapControl]),
       // controls: defaultControls().extend([
       //   // new Attribution(),
       //   new ZoomToExtent({ extent: this.extent }),
@@ -81,7 +103,7 @@ export class MapService {
 
   createMap(elementId: string): void {
     this.map.setTarget(elementId);
-    this.addMapControls()
+    this.addMapControls();
     this.map.updateSize();
   }
 
@@ -95,7 +117,6 @@ export class MapService {
         text: true,
       })
     );
-
   }
 
   /**
